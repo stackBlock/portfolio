@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/shared/Header";
 
 class Index extends React.Component {
   render() {
     return (
-      <h1>I am an index page</h1>
-    )
+      <div>
+        <h1>I am an index page</h1>
+        <Header />
+      </div>
+    );
   }
 }
 
-export default Index
+export default Index;
