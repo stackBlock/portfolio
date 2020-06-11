@@ -18,6 +18,12 @@ const BsNavLink = (props) => {
   );
 };
 
+const BsNavBrand = () => (
+  <Link href="/">
+    <a className="navbar-brand port-navbar-brand">Anthony Stachowitz</a>
+  </Link>
+);
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
@@ -25,27 +31,29 @@ const Header = () => {
   };
   return (
     <div>
-      <Navbar 
-      className="port-navbar port-default absolute"
-      color="transparent" 
-      dark 
-      expand="md">
-        <NavbarBrand className="port-navbar-brand">
-          <BsNavLink href="/" title="Home" />
-        </NavbarBrand>
+      <Navbar
+        className="port-navbar port-default absolute"
+        color="transparent"
+        dark
+        expand="md"
+      >
+        <BsNavBrand />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="port-navbar-item">
+              <BsNavLink href="/" title="Home" />
+            </NavItem>
+            <NavItem className="port-navbar-item">
               <BsNavLink href="/about" title="About" />
             </NavItem>
-            <NavItem className="port-navbar-item">>
+            <NavItem className="port-navbar-item">
               <BsNavLink href="/blogs" title="Blogs" />
             </NavItem>
-            <NavItem className="port-navbar-item">>
+            <NavItem className="port-navbar-item">
               <BsNavLink href="/cv" title="CV" />
             </NavItem>
-            <NavItem className="port-navbar-item">>
+            <NavItem className="port-navbar-item">
               <BsNavLink href="/portfolios" title="Portfolios" />
             </NavItem>
           </Nav>
