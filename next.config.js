@@ -1,8 +1,9 @@
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
+
 module.exports = {
   webpack: (config) => {
-    config.node = {
-      fs: 'empty'
-    }
-    return config
-  }
+    config.plugins.push(new Dotenv({ silent: true }));
+    return config;
+  },
 };
