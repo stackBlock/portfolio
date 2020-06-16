@@ -24,10 +24,12 @@ const LoginLink = () => (
 );
 
 const LogoutLink = () => (
-  <span className="nav-link port-navbar-link clickable">Logout</span>
+  <a className="nav-link port-navbar-link" href="/api/v1/logout">
+    Logout
+  </a>
 );
 
-const Header = () => {
+const Header = ({ user, userLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -59,14 +61,36 @@ const Header = () => {
             <NavItem className="port-navbar-item">
               <BsNavLink href="/portfolios" title="Portfolios" />
             </NavItem>
+            {/* <NavItem className="port-navbar-item">
+              <BsNavLink href="/secret" title="secret" />
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/secretssr" title="secretSSR" />
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/onlyAdmin" title="Admin" />
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/onlyadminssr" title="AdminSSR" />
+            </NavItem> */}
           </Nav>
           <Nav navbar>
-            <NavItem className="port-navbar-item">
-              <LoginLink />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <LogoutLink />
-            </NavItem>
+            {!userLoading && (
+              <>
+                {user && (
+                  <NavItem className="port-navbar-item">
+                    <BsNavLink href="/blogs" title={user.name} />
+                    <LogoutLink />
+                  </NavItem>
+                )}
+
+                {!user && (
+                  <NavItem className="port-navbar-item">
+                    <LoginLink />
+                  </NavItem>
+                )}
+              </>
+            )}
           </Nav>
         </Collapse>
       </Navbar>

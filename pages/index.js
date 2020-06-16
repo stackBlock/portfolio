@@ -2,6 +2,8 @@ import BaseLayout from "../components/layouts/BaseLayout";
 import BasePage from "../components/BasePage";
 import { Button, Container, Row, Col } from "reactstrap";
 import Typed from "react-typed";
+import { useGetUser } from "../actions/user";
+import { useGetPostById } from "../actions";
 
 const ROLES = [
   "Developer",
@@ -13,8 +15,10 @@ const ROLES = [
   "Python",
 ];
 const Index = () => {
+  const { user, userLoading } = useGetUser();
+
   return (
-    <BaseLayout className="cover">
+    <BaseLayout user={user} userLoading={userLoading} className="cover">
       {/* <BasePage> */}
       <div className="main-section">
         <div className="background-image">
