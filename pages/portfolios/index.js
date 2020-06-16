@@ -2,8 +2,11 @@ import BaseLayout from "../../components/layouts/BaseLayout";
 import BasePage from "../../components/BasePage";
 import Link from "next/link";
 import { useGetPosts } from "../../actions/index";
+import { useGetUser } from "../../actions/user";
+
 
 const Portfolios = () => {
+  const { user, userLoading } = useGetUser();
   const { data, error, loading } = useGetPosts();
 
   const renderPosts = (posts) => {
@@ -17,7 +20,7 @@ const Portfolios = () => {
   };
 
   return (
-    <BaseLayout>
+    <BaseLayout user={user} userLoading={userLoading}>
       <BasePage>
         <h1>I am Portfolio Page</h1>
         {loading && <p>Loading...</p>}
