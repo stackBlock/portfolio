@@ -1,12 +1,15 @@
 import Header from "../shared/Header";
 
 const BaseLayout = (props) => {
-  const { className, children, user, loading } = props;
+  const { className, children, navClass='with-bg', user, loading } = props;
   return (
     <div className="layout-container">
-      <Header user={user} loading={loading}/>
+      <Header 
+      className={navClass}
+      user={user} 
+      loading={loading}/>
       <main className={`cover ${className}`}>
-        <div className="wrapper">{children}</div>
+        <div className="wrapper">'{children}'</div>
       </main>
     </div>
   );

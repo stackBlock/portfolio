@@ -1,0 +1,156 @@
+import { useState, useEffect } from "react";
+import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+
+const PortfolioForm = ({ onSubmit }) => {
+  const { register, handleSubmit, setValue } = useForm();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  useEffect(() => {
+    register({ name: "startDate" });
+    register({ name: "endDate" });
+  }, [register]);
+
+  const handleDateChange = (dateType, setDate) => (date) => {
+    setValue(dateType, date);
+    setDate(date);
+  };
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Row form>
+        <Col md={4}>
+          <FormGroup className="form-group">
+            <Label htmlFor="title">Title</Label>
+            <Input
+              innerRef={register}
+              className="form-control"
+              type="text"
+              name="title"
+              id="title"
+              placeholder="company title"
+            />
+          </FormGroup>
+        </Col>
+        <Col md={4}>
+          <FormGroup className="form-group">
+            <Label htmlFor="company">Company</Label>
+            <Input
+              innerRef={register}
+              className="form-control"
+              type="text"
+              name="company"
+              id="company"
+              placeholder="company name"
+            />
+          </FormGroup>
+        </Col>
+        <Col md={4}>
+          <FormGroup className="form-group">
+            <Label htmlFor="companyWebsite">Company Website</Label>
+            <Input
+              innerRef={register}
+              className="form-control"
+              type="text"
+              name="companyWebsite"
+              id="companyWebsite"
+              placeholder="company website"
+            />
+          </FormGroup>
+        </Col>
+      </Row>
+
+      <Row form>
+        <Col md={6}>
+          <FormGroup className="form-group">
+            <Label htmlFor="location">Location</Label>
+            <Input
+              innerRef={register}
+              className="form-control"
+              type="text"
+              name="location"
+              id="location"
+              placeholder="location"
+            />
+          </FormGroup>
+        </Col>
+        <Col md={6}>
+          <FormGroup className="form-group">
+            <Label htmlFor="jobTitle">Job Title</Label>
+            <Input
+              innerRef={register}
+              className="form-control"
+              type="text"
+              name="jobTitle"
+              id="jobTitle"
+              placeholder="job title"
+            />
+          </FormGroup>
+        </Col>
+      </Row>
+      <FormGroup>
+        <Label htmlFor="description">Description</Label>
+        <Input
+          innerRef={register}
+          className="form-control"
+          type="textarea"
+          name="description"
+          id="description"
+          placeholder="description"
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="startDate">Start Date</Label>
+        <div>
+          <DatePicker
+            showYearDropdown
+            selected={startDate}
+            onChange={handleDateChange("startDate", setStartDate)}
+          />
+        </div>
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="endDate">End Date</Label>
+        <div>
+          <DatePicker
+            disabled={!endDate}
+            showYearDropdown
+            selected={endDate}
+            onChange={handleDateChange("endDate", setEndDate)}
+          />
+        </div>
+      </FormGroup>
+      <FormGroup>
+        {endDate && (
+          <Button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => handleDateChange("endDate", setEndDate)()}
+          >
+            No End Date
+          </Button>
+        )}
+        {!endDate && (
+          <Button
+            type="button"
+            className="btn btn-success"
+            onClick={() =>
+              handleDateChange(
+                "endDate",
+                setEndDate
+              )(new Date(new Date().setHours(0, 0, 0, 0)))
+            }
+          >
+            Set End Date
+          </Button>
+        )}
+      </FormGroup>
+
+      <Button type="submit">Create</Button>
+    </Form>
+  );
+};
+
+export default PortfolioForm;
