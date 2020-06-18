@@ -29,7 +29,7 @@ const LogoutLink = () => (
   </a>
 );
 
-const Header = ({ user, userLoading }) => {
+const Header = ({ user, userLoading, className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -37,8 +37,7 @@ const Header = ({ user, userLoading }) => {
   return (
     <div>
       <Navbar
-        className="port-navbar port-default absolute"
-        color="transparent"
+        className={`port-navbar port-default absolute ${className}`}
         dark
         expand="md"
       >

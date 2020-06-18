@@ -18,7 +18,12 @@ const Index = () => {
   const { user, userLoading } = useGetUser();
 
   return (
-    <BaseLayout user={user} userLoading={userLoading} className="cover">
+    <BaseLayout
+      navClass={""}
+      user={user}
+      userLoading={userLoading}
+      className="cover"
+    >
       {/* <BasePage> */}
       <div className="main-section">
         <div className="background-image">

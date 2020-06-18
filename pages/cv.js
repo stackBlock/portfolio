@@ -14,4 +14,5 @@ const CV = () => {
   );
 };
 
-export default withAuth(CV)();
+export default CV;
+//export default withAuth(CV)();
