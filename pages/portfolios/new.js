@@ -1,20 +1,24 @@
 import BaseLayout from "../../components/layouts/BaseLayout";
 import BasePage from "../../components/BasePage";
 import withAuth from "../../hoc/withAuth";
-import { Form, Col } from "reactstrap";
+import { Col } from "reactstrap";
 import PortfolioForm from "../../components/PortfolioForm";
-import { createPortfolio } from "../../actions/portfolios";
+import { useCreatePortfolio } from "../../actions/portfolios";
+import Redirect from "../../components/shared/Redirect";
 
 const PortfolioNew = ({ user, userLoading }) => {
-  const _createPortfolio = (data) => {
-    createPortfolio(data);
-  };
+  const [createPortfolio, { data, loading, error }] = useCreatePortfolio();
+
+  if (data) {
+    return <Redirect to="/portfolios" />;
+  }
 
   return (
     <BaseLayout user={user} userLoading={userLoading}>
       <BasePage header="Create Portfolio">
         <Col>
-          <PortfolioForm onSubmit={_createPortfolio} />
+          <PortfolioForm onSubmit={createPortfolio} />
+          { error && <div className="alert alert-danger mt-2">{error}</div>}
         </Col>
       </BasePage>
     </BaseLayout>

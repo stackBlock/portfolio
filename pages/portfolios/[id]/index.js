@@ -1,7 +1,7 @@
-import BaseLayout from "../../components/layouts/BaseLayout";
-import BasePage from "../../components/BasePage";
-import { useGetUser } from "../../actions/user";
-import PortfolioApi from "../../lib/api/portfolio";
+import BaseLayout from "../../../components/layouts/BaseLayout";
+import BasePage from "../../../components/BasePage";
+import { useGetUser } from "../../../actions/user";
+import PortfolioApi from "../../../lib/api/portfolio";
 
 const Portfolio = (props) => {
   const { user, userLoading } = useGetUser();
