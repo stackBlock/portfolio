@@ -1,7 +1,7 @@
-import BaseLayout from "../../components/layouts/BaseLayout";
-import BasePage from "../../components/BasePage";
-import { useGetUser } from "../../actions/user";
-import PortfolioApi from "../../lib/api/portfolio";
+import BaseLayout from "components/layouts/BaseLayout";
+import BasePage from "components/BasePage";
+import { useGetUser } from "actions/user";
+import PortfolioApi from "lib/api/portfolio";
 
 const Portfolio = (props) => {
   const { user, userLoading } = useGetUser();
@@ -14,12 +14,6 @@ const Portfolio = (props) => {
     </BaseLayout>
   );
 };
-
-// export async function getServerSideProps(props) {
-//   const json = await new PortfolioApi().getById(props.query.id)
-//   const portfolio = json.data;
-//   return {props: {portfolio}}
-// }
 
 
 // executed at build time

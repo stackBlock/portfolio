@@ -1,12 +1,23 @@
 import Link from "next/link";
 import React, { Component, useState } from "react";
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
+import { isAuthorized } from "utils/auth0";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 const BsNavLink = (props) => {
-  const { title, href } = props;
+  const { title, href, className = "" } = props;
   return (
     <Link href={href}>
-      <a className="nav-link port-navbar-link">{title}</a>
+      <a className={`nav-link port-navbar-link ${className}`}>{title}</a>
     </Link>
   );
 };
@@ -28,6 +39,53 @@ const LogoutLink = () => (
     Logout
   </a>
 );
+
+const AdminMenu = ({ user }) => {
+  const [_isOpen, _setIsOpen] = useState(false);
+  return (
+    <Dropdown
+      className="port-navbar-link port-dropdown-menu"
+      nav
+      isOpen={_isOpen ? true : false}
+      toggle={() => {
+        _setIsOpen(!_isOpen);
+      }}
+    >
+      <DropdownToggle className="port-dropdown-toggle" nav caret>
+        Admin
+      </DropdownToggle>
+      <DropdownMenu>
+        {user && (
+          <>
+            {isAuthorized(user, "admin") && (
+              <DropdownItem>
+                <BsNavLink
+                  className="port-dropdown-item"
+                  href="/portfolios/new"
+                  title="Create Portfolio"
+                />
+              </DropdownItem>
+            )}
+          </>
+        )}
+        <DropdownItem>
+          <BsNavLink
+            className="port-dropdown-item"
+            href="/blogs/editor"
+            title="Blog Editor"
+          />
+        </DropdownItem>
+        <DropdownItem>
+          <BsNavLink
+            className="port-dropdown-item"
+            href="/blogs/dashboard"
+            title="Dashboard"
+          />
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  );
+};
 
 const Header = ({ user, userLoading, className }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,10 +135,12 @@ const Header = ({ user, userLoading, className }) => {
             {!userLoading && (
               <>
                 {user && (
-                  <NavItem className="port-navbar-item">
-                    <BsNavLink href="/blogs" title={user.name} />
-                    <LogoutLink />
-                  </NavItem>
+                  <>
+                    <AdminMenu user={user} />
+                    <NavItem className="port-navbar-item">
+                      <LogoutLink />
+                    </NavItem>
+                  </>
                 )}
 
                 {!user && (

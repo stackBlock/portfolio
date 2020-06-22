@@ -15,7 +15,6 @@
     "@auth0/nextjs-auth0": "^0.11.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
-    "dotenv-webpack": "^1.8.0",
     "express": "^4.17.1",
     "next": "9.4.4",
     "next-routes": "^1.4.2",
@@ -23,9 +22,11 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
+    "react-toastify": "^6.0.5",
     "react-typed": "^1.2.0",
     "reactstrap": "^8.4.1",
     "sass": "^1.26.8",
+    "slate-simple-editor": "git+https://github.com/Jerga99/slate-simple-editor.git",
     "swr": "^0.2.3"
   }
 }
