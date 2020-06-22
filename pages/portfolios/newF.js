@@ -1,8 +1,8 @@
-import BaseLayout from "../../components/layouts/BaseLayout";
-import BasePage from "../../components/BasePage";
-import withAuth from "../../hoc/withAuth";
+import BaseLayout from "components/layouts/BaseLayout";
+import BasePage from "components/BasePage";
+import withAuth from "hoc/withAuth";
 import { Form, Col } from "reactstrap";
-import PortfolioForm from "../../components/PortfolioForm";
+import PortfolioForm from "components/PortfolioForm";
 
 const PortfolioNew = ({ user, userLoading }) => {
   const createPortfolio = (data) => {

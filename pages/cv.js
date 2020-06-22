@@ -1,7 +1,7 @@
-import BaseLayout from "../components/layouts/BaseLayout";
-import BasePage from "../components/BasePage";
-import { useGetUser } from "../actions/user";
-import withAuth from "../hoc/withAuth";
+import BaseLayout from "components/layouts/BaseLayout";
+import BasePage from "components/BasePage";
+import { useGetUser } from "actions/user";
+import withAuth from "hoc/withAuth";
 
 const CV = () => {
   const { user, userLoading } = useGetUser();

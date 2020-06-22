@@ -1,4 +1,4 @@
-import { fetcher } from "./index";
+import { fetcher } from "actions/index";
 import useSWR from "swr";
 
 export const useGetUser = () => {

@@ -1,16 +1,15 @@
 import BaseLayout from "components/layouts/BaseLayout";
 import BasePage from "components/BasePage";
-import { useGetUser } from "actions/user";
+import withAuth from "hoc/withAuth";
 
-const Blogs = () => {
-  const { user, userLoading } = useGetUser();
+const Dashboard = ({user, userLoading}) => {
   return (
     <BaseLayout user={user} userLoading={userLoading}>
-      <BasePage>
-        <h1>I am a blogs page</h1>
+      <BasePage header="DASHBOARD">
+        <h1>Some Text</h1>
       </BasePage>
     </BaseLayout>
   );
 };
 
-export default Blogs;
+export default withAuth(Dashboard)('admin');
