@@ -78,7 +78,7 @@ const AdminMenu = ({ user }) => {
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
-            href="/blogs/dashboard"
+            href="/dashboard"
             title="Dashboard"
           />
         </DropdownItem>
