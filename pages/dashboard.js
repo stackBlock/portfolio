@@ -6,7 +6,7 @@ import PortDropdown from "components/shared/Dropdown";
 import Link from "next/link";
 import { useUpdateBlogs } from "actions/blogs";
 import { useGetUserBlogs } from "actions/blogs";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
 
 import auth0 from "utils/auth0";
 import BlogApi from "lib/api/blogs";
@@ -78,7 +78,15 @@ const Dashboard = ({ user, userLoading }) => {
 
   return (
     <BaseLayout navClass="transparent" user={user} loading={userLoading}>
-      <Masthead imagePath="url(/images/home-bg.jpg)" />
+      <Masthead imagePath="url(/images/home-bg.jpg)">
+      <h1>Blogs Dashboard</h1>
+              <span className="subheading">
+                Let's write some nice blog today{" "}
+                <Link href="/blogs/editor">
+                  <Button color="primary">Create a new Blog</Button>
+                </Link>
+              </span>
+        </Masthead> 
       <BasePage className="blog-user-page">
         <Row>
           <Col md="6" className="mx-auto text-center">
