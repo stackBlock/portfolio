@@ -54,10 +54,10 @@ const AdminMenu = ({ user }) => {
       <DropdownToggle className="port-dropdown-toggle" nav caret>
         Admin
       </DropdownToggle>
-      <DropdownMenu>
-        {user && (
-          <>
-            {isAuthorized(user, "admin") && (
+      {user && (
+        <>
+          {isAuthorized(user, "admin") && (
+            <DropdownMenu>
               <DropdownItem>
                 <BsNavLink
                   className="port-dropdown-item"
@@ -65,24 +65,25 @@ const AdminMenu = ({ user }) => {
                   title="Create Portfolio"
                 />
               </DropdownItem>
-            )}
-          </>
-        )}
-        <DropdownItem>
-          <BsNavLink
-            className="port-dropdown-item"
-            href="/blogs/editor"
-            title="Blog Editor"
-          />
-        </DropdownItem>
-        <DropdownItem>
-          <BsNavLink
-            className="port-dropdown-item"
-            href="/dashboard"
-            title="Dashboard"
-          />
-        </DropdownItem>
-      </DropdownMenu>
+
+              <DropdownItem>
+                <BsNavLink
+                  className="port-dropdown-item"
+                  href="/blogs/editor"
+                  title="Blog Editor"
+                />
+              </DropdownItem>
+              <DropdownItem>
+                <BsNavLink
+                  className="port-dropdown-item"
+                  href="/dashboard"
+                  title="Dashboard"
+                />
+              </DropdownItem>
+            </DropdownMenu>
+          )}
+        </>
+      )}
     </Dropdown>
   );
 };
