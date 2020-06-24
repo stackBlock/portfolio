@@ -1,25 +1,93 @@
 import BaseLayout from "components/layouts/BaseLayout";
 import BasePage from "components/BasePage";
-import { withAuth } from "utils/auth0";
+import withAuth from "hoc/withAuth";
 import Masthead from "components/shared/Masthead";
-
+import PortDropdown from "components/shared/Dropdown";
+import Link from "next/link";
+import { useUpdateBlogs } from "actions/blogs";
+import { useGetUserBlogs } from "actions/blogs";
 import { Row, Col } from "reactstrap";
 
 import auth0 from "utils/auth0";
 import BlogApi from "lib/api/blogs";
+import { toast } from "react-toastify";
 
-const Dashboard = ({ user, blogs }) => {
-  debugger
+const Dashboard = ({ user, userLoading }) => {
+  const [updateBlog] = useUpdateBlogs();
+  const { data: blogs, mutate } = useGetUserBlogs();
+
+  const deleteBlog = async (blogId, status) => {
+    const isConfirm = confirm(
+      "Are you sure you want to delete this Blog Post?"
+    );
+    if (isConfirm) {
+      await updateBlog(blogId, { status })
+        .then(() => mutate())
+        .catch(() => toast.error("Something went Wrong!!!"));
+    }
+  };
+
+  const changeBlogStatus = async (blogId, status) => {
+    await updateBlog(blogId, { status })
+      .then(() => mutate())
+      .catch(() => toast.error("Something went Wrong!!!"));
+  };
+
+  const createOption = (blogStatus) => {
+    return blogStatus === "draft"
+      ? { view: "Publish Story", value: "published" }
+      : { view: "Make a draft", value: "draft" };
+  };
+
+  const createOptions = (blog) => {
+    const option = createOption(blog.status);
+
+    return [
+      {
+        key: `${blog._id}-published`,
+        text: option.view,
+        handlers: {
+          onClick: () => changeBlogStatus(blog._id, option.value),
+        },
+      },
+      {
+        key: `${blog._id}-delete`,
+        text: "Delete",
+        handlers: {
+          onClick: () => deleteBlog(blog._id, "deleted"),
+        },
+      },
+    ];
+  };
+
+  const renderBlogs = (blogs, status) => (
+    <ul className="user-blogs-list">
+      {blogs &&
+        blogs
+          .filter((blog) => blog.status === status)
+          .map((blog) => (
+            <li key={blog._id}>
+              <Link href="/blogs/editor/[id]" as={`/blogs/editor/${blog._id}`}>
+                <a>{blog.title}</a>
+              </Link>
+              <PortDropdown items={createOptions(blog)} />
+            </li>
+          ))}
+    </ul>
+  );
+
   return (
-    <BaseLayout navClass="transparent" user={user} loading={false}>
+    <BaseLayout navClass="transparent" user={user} loading={userLoading}>
       <Masthead imagePath="url(/images/home-bg.jpg)" />
       <BasePage className="blog-user-page">
         <Row>
           <Col md="6" className="mx-auto text-center">
             <h2 className="blog-status-title"> Published Blogs </h2>
+            {renderBlogs(blogs, "published")}
           </Col>
           <Col md="6" className="mx-auto text-center">
             <h2 className="blog-status-title"> Draft Blogs </h2>
+            {renderBlogs(blogs, "draft")}
           </Col>
         </Row>
       </BasePage>
@@ -27,11 +95,4 @@ const Dashboard = ({ user, blogs }) => {
   );
 };
 
-export const getServerSideProps = withAuth(async ({ req, res }) => {
-  const { accessToken } = await auth0.getSession(req);
-  const json = await new BlogApi(accessToken).getByUser();
-  console.log(json.data)
-  return { blogs: json.data };
-})("admin");
-
-export default Dashboard;
+export default withAuth(Dashboard)("admin");
