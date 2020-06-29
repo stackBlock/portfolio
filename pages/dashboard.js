@@ -79,15 +79,18 @@ const Dashboard = ({ user, userLoading }) => {
   return (
     <BaseLayout navClass="transparent" user={user} loading={userLoading}>
       <Masthead imagePath="url(/images/home-bg.jpg)">
-      <h1>Blogs Dashboard</h1>
-              <span className="subheading">
-                Let's write some nice blog today{" "}
-                <Link href="/blogs/editor">
-                  <Button color="primary">Create a new Blog</Button>
-                </Link>
-              </span>
-        </Masthead> 
-      <BasePage className="blog-user-page">
+        <h1>Blogs Dashboard</h1>
+        <span className="subheading">
+          Let's write some nice blog today{" "}
+          <Link href="/blogs/editor">
+            <Button color="primary">Create a new Blog</Button>
+          </Link>
+        </span>
+      </Masthead>
+      <BasePage
+        title="Dashboard - Anthony Stachowitz"
+        className="blog-user-page"
+      >
         <Row>
           <Col md="6" className="mx-auto text-center">
             <h2 className="blog-status-title"> Published Blogs </h2>

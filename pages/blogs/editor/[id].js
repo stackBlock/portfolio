@@ -22,7 +22,7 @@ const BlogUpdateEditor = ({ user, userLoading }) => {
 
   return (
     <BaseLayout user={user} loading={userLoading}>
-      <BasePage>
+      <BasePage title="Blogs - Anthony Stachowitz" >
         {data && data.content && (
           <Editor
             initialContent={data.content}

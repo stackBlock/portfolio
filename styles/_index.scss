@@ -18,6 +18,10 @@
   padding: 150px 0 0;
 }
 
+.main-row {
+  padding-top: 175px;
+}
+
 .hero-section {
   h2 {
     color: white;
@@ -53,6 +57,7 @@
   text-transform: uppercase;
   font-size: 27px;
   margin-top: 80px;
+  font-weight: 300px;
 }
 
 .hero-welcome-bio {
@@ -72,9 +77,16 @@
 
 .hero-welcome-wrapper {
   justify-content: flex-end;
+  margin-top: 20px;
 
 }
 
+// @media (max-width: 1350px) {
+//   .hero-section {
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+// }
 @media (max-width: 991px) {
   .hero-section {
     width: 341px;
@@ -91,8 +103,8 @@
 
 .background-image {
   position: absolute;
-  width: 1762px;
-  height: 493px;
+  width: 2000px;
+  height: 50%;
 }
 
 .shadow-custom {

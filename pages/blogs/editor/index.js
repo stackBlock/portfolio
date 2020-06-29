@@ -22,7 +22,7 @@ const BlogEditor = ({ user, userLoading }) => {
 
   return (
     <BaseLayout user={user} loading={userLoading}>
-      <BasePage>
+      <BasePage title="Blog Editor - Anthony Stachowitz" >
 
         <Editor onSave={saveBlog} loading={loading} />
         
