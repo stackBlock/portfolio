@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const json = await new BlogApi().getBySlug(params.slug);
-  return { props: { blog: json.data } };
+  return { props: { blog: json.data }, unstable_revalidate: 10 };
 }
 
 export default BlogDetail;

@@ -1,13 +1,12 @@
 import BaseLayout from "components/layouts/BaseLayout";
 import BasePage from "components/BasePage";
-import { formatDate } from 'helpers/functions';
+import { formatDate } from "helpers/functions";
 import { useGetUser } from "actions/user";
 import PortfolioApi from "lib/api/portfolio";
 
 const Portfolio = (props) => {
   const { portfolio } = props;
   const { user, userLoading } = useGetUser();
-  console.log(props);
   return (
     <BaseLayout navClass="transparent" user={user} userLoading={userLoading}>
       <BasePage
@@ -17,23 +16,23 @@ const Portfolio = (props) => {
         metaDescription={portfolio.description}
       >
         <div className="portfolio-detail">
-          <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-            <main role="main" class="inner page-cover">
-              <h1 class="cover-heading">{portfolio.title}</h1>
-              <p class="lead dates">
+          <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
+            <main role="main" className="inner page-cover">
+              <h1 className="cover-heading">{portfolio.title}</h1>
+              <p className="lead dates">
                 {formatDate(portfolio.startDate)} -{" "}
                 {formatDate(portfolio.endDate) || "Present"}
               </p>
-              <p class="lead info mb-0">
+              <p className="lead info mb-0">
                 {portfolio.jobTitle} | {portfolio.company} |{" "}
                 {portfolio.location}
               </p>
-              <p class="lead">{portfolio.description}</p>
-              <p class="lead">
+              <p className="lead">{portfolio.description}</p>
+              <p className="lead">
                 <a
                   href={portfolio.companyWebsite}
                   target="_"
-                  class="btn btn-lg btn-secondary"
+                  className="btn btn-lg btn-secondary"
                 >
                   Visit Company
                 </a>
@@ -65,6 +64,7 @@ export async function getStaticProps({ params }) {
   const portfolio = json.data;
   return {
     props: { portfolio },
+    unstable_revalidate: 10,
   };
 }
 

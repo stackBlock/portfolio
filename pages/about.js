@@ -16,32 +16,23 @@ const About = () => {
         <Row className="mt-5">
           <Col md="6">
             <div className="left-side">
-              <h1 className={`title fadein`}>Hello, Welcome</h1>
-              <h4 className={`subtitle fadein`}>To About Page</h4>
+              <h1 className={`title fadein`}>Welcome to</h1>
+              <h4 className={`subtitle fadein`}>A Little Info About Me</h4>
               <p className={`subsubTitle fadein`}>
-                Feel free to read short description about me.
+                A short description.
               </p>
             </div>
           </Col>
           <Col md="6">
             <div className={`fadein`}>
               <p>
-                My name is Filip Jerga and I am an experienced software engineer
-                and freelance developer.{" "}
+                My name is Anthony Stachowitz and I am a developer who enjoys new technologies and likes to work on the edge.{" "}
               </p>
               <p>
-                I have a Master's degree in Artificial Intelligence and several
-                years of experience working on a wide range of technologies and
-                projects from C++ development for ultrasound devices to modern
-                mobile and web applications in React and Angular.
+                I have a Bachelors degree in Criminal Justice, Political Science and Marketing from Metro State University of Denver. I studied full stack development at the Lambda school in San Francisco (online) and blockchain technology at the Emurgo Academy in India (online) - along with various self taught online classes.
               </p>
               <p>
-                Throughout my career, I have acquired advanced technical
-                knowledge and the ability to explain programming topics clearly
-                and in detail to a broad audience. I invite you to take my
-                course, where I have put a lot of effort to explain web and
-                software engineering concepts in a detailed, hands-on and
-                understandable way.
+                Throughout my career, I have acquired a variety of diverse experiences. The early part of my career has been spent building some of my own businesses and the later part has been dedicated to learning new technologies with a personal focus on blockchain technology.
               </p>
             </div>
           </Col>

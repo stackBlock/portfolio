@@ -8,12 +8,12 @@ import Particles from "react-particles-js";
 import {backgroundStyle, letters, collisions, connect, image, cool} from 'styles/backgroundStyle'
 
 const ROLES = [
-  "Developer",
-  "Tech Lover",
-  "Team player",
-  "Courser Creator",
+  "Full Stack Developer",
+  "Project Manager",
+  "Team Lead",
+  "Solidity",
   "React.js",
-  "Angular",
+  "Blockchain",
   "Python",
 ];
 const Index = () => {
@@ -41,9 +41,9 @@ const Index = () => {
                   <div className={`flipper`}>
                     <div className="back">
                       <div className="hero-section-content">
-                        <h2> Full Stack Web Developer </h2>
+                        <h3> Full Stack Web Developer </h3>
                         <div className="hero-section-content-intro">
-                          Have a look at my portfolio and job history.
+                          Please have a look at my portfolio and history.
                         </div>
                       </div>
                       <img className="image" src="/images/section-1a.png" />
@@ -57,9 +57,7 @@ const Index = () => {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Anthony Stachowitz. Get
-                    informed, collaborate and discover projects I was working on
-                    through the years!
+                    Welcome to the portfolio website of Anthony Stachowitz. Please take a look at my portfolio, Resume and blogs.
                   </h1>
                 </div>
                 <Typed
