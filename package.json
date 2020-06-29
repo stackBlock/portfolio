@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start-dev": "NODE_ENV=production node server.js",
+    "start": "next start"
   },
   "keywords": [],
   "author": "",
@@ -19,10 +20,13 @@
     "moment": "^2.27.0",
     "next": "9.4.4",
     "next-routes": "^1.4.2",
+    "particles-bg": "^2.5.0",
     "react": "16.13.1",
     "react-datepicker": "^3.0.0",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
+    "react-particles-js": "^3.2.1",
+    "react-resize-detector": "^5.0.6",
     "react-toastify": "^6.0.5",
     "react-typed": "^1.2.0",
     "reactstrap": "^8.4.1",

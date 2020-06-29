@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Masthead = ({ imagePath, children }) => {
   return (
-    <div className="masthead" style={{ backgroundImage: imagePath }}>
+    <div className="masthead" style={{ "backgroundImage": `url(${imagePath})`}}>
       <div className="overlay"></div>
       <Container>
         <Row>

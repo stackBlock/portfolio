@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { Component, useState } from "react";
 import { isAuthorized } from "utils/auth0";
+import ReactResizeDetector from "react-resize-detector";
 import {
   Collapse,
   Navbar,
@@ -12,13 +13,14 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import ActiveLink from "components/shared/ActiveLink";
 
 const BsNavLink = (props) => {
   const { title, href, className = "" } = props;
   return (
-    <Link href={href}>
+    <ActiveLink activeClassName="active" href={href}>
       <a className={`nav-link port-navbar-link ${className}`}>{title}</a>
-    </Link>
+    </ActiveLink>
   );
 };
 
@@ -94,67 +96,72 @@ const Header = ({ user, userLoading, className }) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div>
-      <Navbar
-        className={`port-navbar port-default absolute ${className}`}
-        dark
-        expand="md"
-      >
-        <BsNavBrand />
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/" title="Home" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/about" title="About" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/blogs" title="Blogs" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/cv" title="CV" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/portfolios" title="Portfolios" />
-            </NavItem>
-            {/* <NavItem className="port-navbar-item">
+    <ReactResizeDetector handleWidth>
+      {({ width }) => (
+        <Navbar
+          className={`port-navbar port-default absolute transparent ${className} ${
+            width < 1500 && isOpen ? "is-open" : "is-close"
+          }`}
+          dark
+          expand="md"
+        >
+          <BsNavBrand />
+
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem className="port-navbar-item">
+                <BsNavLink href="/" title="Home" />
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                <BsNavLink href="/about" title="About" />
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                <BsNavLink href="/blogs" title="Blogs" />
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                <BsNavLink href="/cv" title="CV" />
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                <BsNavLink href="/portfolios" title="Portfolios" />
+              </NavItem>
+              {/* <NavItem className="port-navbar-item">
               <BsNavLink href="/secret" title="secret" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
+              </NavItem>
+              <NavItem className="port-navbar-item">
               <BsNavLink href="/secretssr" title="secretSSR" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
+              </NavItem>
+              <NavItem className="port-navbar-item">
               <BsNavLink href="/onlyAdmin" title="Admin" />
-            </NavItem>
-            <NavItem className="port-navbar-item">
+              </NavItem>
+              <NavItem className="port-navbar-item">
               <BsNavLink href="/onlyadminssr" title="AdminSSR" />
             </NavItem> */}
-          </Nav>
-          <Nav navbar>
-            {!userLoading && (
-              <>
-                {user && (
-                  <>
-                    <AdminMenu user={user} />
-                    <NavItem className="port-navbar-item">
-                      <LogoutLink />
-                    </NavItem>
-                  </>
-                )}
+            </Nav>
+            <Nav navbar>
+              {!userLoading && (
+                <>
+                  {user && (
+                    <>
+                      <AdminMenu user={user} />
+                      <NavItem className="port-navbar-item">
+                        <LogoutLink />
+                      </NavItem>
+                    </>
+                  )}
 
-                {!user && (
-                  <NavItem className="port-navbar-item">
-                    <LoginLink />
-                  </NavItem>
-                )}
-              </>
-            )}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+                  {!user && (
+                    <NavItem className="port-navbar-item">
+                      <LoginLink />
+                    </NavItem>
+                  )}
+                </>
+              )}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      )}
+    </ReactResizeDetector>
   );
 };
 

@@ -5,14 +5,14 @@ import Masthead from "components/shared/Masthead";
 import { Row, Col } from "reactstrap";
 import BlogApi from "lib/api/blogs";
 import BlogItem from "components/BlogItem";
+import { urlObjectKeys } from "next/dist/next-server/lib/utils";
 
 
 const Blogs = ({ blogs }) => {
   const { user, userLoading } = useGetUser();
-  debugger;
   return (
     <BaseLayout
-      navClass="transparent"
+      //navClass="transparent"
       className="blog-listing-page"
       user={user}
       userLoading={userLoading}
@@ -21,7 +21,7 @@ const Blogs = ({ blogs }) => {
         <h1>Fresh Blogs</h1>
         <span className="subheading">Programming, travelling...</span>
       </Masthead>
-      <BasePage className="blog-body">
+      <BasePage title="Blogs - Anthony Stachowitz" className="blog-body">
         <Row>
           {blogs.map((blog) => (
             <Col key={blog._id} md="10" lg="8" className="mx-auto">
